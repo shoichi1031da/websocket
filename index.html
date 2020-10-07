@@ -8,7 +8,10 @@
 <body>
   IchigoSoda test
 <script>
+//sakuraioの連携サービス「WebSocket」
 let socket = new WebSocket("webSocketのURL");
+
+/* sakuraioに87を送信する。※Github Pagesじゃ送信が無理
 let json =  {
                 "module":"モジュールID",
                 "type": "channels",
@@ -22,20 +25,21 @@ let json =  {
             }
          
 json = JSON.stringify(json);
-  
-json = JSON.stringify(json);
+*/
 
+//sakuraioから値を受け取り、GAS発火
 socket.onmessage = function(event) {
     let obj = JSON.parse(event.data); 
-    let value = obj.payload.channels[0].value;
+    let value = obj.payload.channels[0].value; //IchigoSodaから送った値
+  
     if (value){
-        //socket.send(json);
+        //socket.send(json); sakuraioに送信
        
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("GET", "WebhookURL_GASのURL");
-        xhr.send();
-        count++;
-        document.title = "(" + count + ")";
+        xhr.send(); //GAS発火
+        count++; //タブの表示
+        document.title = "(" + count + ")"; //タブのtitle変更
         console.log(json);
         console.log(value);
     }
