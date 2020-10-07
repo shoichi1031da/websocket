@@ -24,15 +24,15 @@ let json =  {
          
 json = JSON.stringify(json);
 
+let xhr = new XMLHttpRequest();
+  
 socket.onmessage = function(event) {
     let obj = JSON.parse(event.data); 
     let value = obj.payload.channels[0].value;
     if (value){
-        var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://script.google.com/macros/s/AKfycbz1yoqQzUU3K4loAWlgutZdgxpYyJj8rD9r8HWPfSfuF00cF24G/exec");
         xhr.send();
         console.log(json);
-        console.log(value);
     }
 }
 
