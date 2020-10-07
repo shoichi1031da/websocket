@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>websocket</title>
+</head>
+
+<body>
+<script>
+let socket = new WebSocket("wss://api.sakura.io/ws/v1/8c525242-55ca-4bf6-bd90-d172a4957720");
+let json =  {
+                "module":"uNNbhizpPrNG",
+                "type": "channels",
+                "payload": {
+                "channels": [{
+                    "channel": 0,
+                    "type": "i",
+                    "value": 87,
+                    }]
+               }
+            }
+         
+json = JSON.stringify(json);
+
+socket.onmessage = function(event) {
+    let obj = JSON.parse(event.data); 
+    let value = obj.payload.channels[0].value;
+    if (value){
+        socket.send(json);
+        console.log(json);
+        console.log(value);
+    }
+}
+
+
+</script>
+</body>
+</html>
