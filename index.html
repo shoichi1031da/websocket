@@ -22,10 +22,9 @@ let json =  {
             }
          
 json = JSON.stringify(json);
-
-let xhr = new XMLHttpRequest();
   
 socket.onmessage = function(event) {
+    let xhr = new XMLHttpRequest();
     let obj = JSON.parse(event.data); 
     let value = obj.payload.channels[0].value;
     if (value){
