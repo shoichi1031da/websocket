@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>websocket</title>
+  <title>LINE</title>
 </head>
 
 <body>
@@ -23,16 +23,29 @@ let json =  {
          
 json = JSON.stringify(json);
   
+json = JSON.stringify(json);
+
 socket.onmessage = function(event) {
-    let xhr = new XMLHttpRequest();
     let obj = JSON.parse(event.data); 
     let value = obj.payload.channels[0].value;
     if (value){
+        //socket.send(json);
+       
+        var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://script.google.com/macros/s/AKfycbz1yoqQzUU3K4loAWlgutZdgxpYyJj8rD9r8HWPfSfuF00cF24G/exec");
         xhr.send();
+        count++;
+        document.title = "(" + count + ")";
         console.log(json);
+        console.log(value);
     }
 }
+
+//chromeタブの通知
+window.addEventListener('focus', e => {
+  document.title = "LINE";
+  count = 0;
+})
 
 
 </script>
