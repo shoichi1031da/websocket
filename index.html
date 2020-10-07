@@ -8,9 +8,9 @@
 <body>
   IchigoSoda test
 <script>
-let socket = new WebSocket("wss://api.sakura.io/ws/v1/8c525242-55ca-4bf6-bd90-d172a4957720");
+let socket = new WebSocket("webSocketのURL");
 let json =  {
-                "module":"uNNbhizpPrNG",
+                "module":"モジュールID",
                 "type": "channels",
                 "payload": {
                 "channels": [{
@@ -32,7 +32,7 @@ socket.onmessage = function(event) {
         //socket.send(json);
        
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://script.google.com/macros/s/AKfycbz1yoqQzUU3K4loAWlgutZdgxpYyJj8rD9r8HWPfSfuF00cF24G/exec");
+        xhr.open("GET", "WebhookURL_GASのURL");
         xhr.send();
         count++;
         document.title = "(" + count + ")";
